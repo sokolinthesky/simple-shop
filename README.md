@@ -1,5 +1,6 @@
 # <h1>simple-shop</h1>
 An Java web application created for study REST API + AngularJs
+openshift: <a>http://shop-airshop.rhcloud.com</a>
 
 <h2>Technologies</h2>
 <ul>
