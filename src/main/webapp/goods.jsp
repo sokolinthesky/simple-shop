@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Goods</title>
+    <title>Goods List</title>
     <%--<link rel="stylesheet" href="css/table-style.css">--%>
     <link rel="stylesheet" href="css/bootstrap.css">
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
