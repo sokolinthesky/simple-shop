@@ -7,4 +7,3 @@ logs
 /target
 .gradle
 build
-generatedsources
