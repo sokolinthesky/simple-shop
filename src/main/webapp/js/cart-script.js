@@ -15,8 +15,7 @@ cartApp.service('BuyItemsService',
         }
     }
 );
-cartApp.config(['$routeProvider',
-    function($routeProvider) {
+cartApp.config(['$routeProvider',function($routeProvider) {
         $routeProvider.
             when('/viewBuyItems', {
                 templateUrl: 'viewBuyItems.htm',
@@ -36,9 +35,12 @@ cartApp.controller('BuyItemsController', function($scope, $http, $location, BuyI
             $scope.values = response;
         });
     };
-    /*$scope.deleteGoods = function(goods) {
-        $http.delete("api/cart/"+ goods.id).success(function (response) {
-            $scope.refresh();
-        });
-    }*/
 });
+
+@scope.getTotalPrice = function(values) {
+    $scope.totalPrice = 0;
+                values.forEach(function(item, i, values) {
+                    totalPrice = totalPrice + item.goods.price;
+                });
+                return totalPrice;
+}

@@ -1,50 +1,36 @@
 package ua.airshop.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-import ua.airshop.logic.cart.BuyItem;
-import ua.airshop.logic.cart.Cart;
-import ua.airshop.logic.goods.Goods;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PathVariable;
+import ua.airshop.service.cart.CartService;
+import ua.airshop.service.entity.BuyItem;
+import ua.airshop.service.entity.Goods;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
 
 @RestController
 @RequestMapping(value = "/cart")
 public class CartController {
 
-    private Cart cart = new Cart();
+    @Autowired
+    private CartService cartService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public Cart ByuItems() {
-        if(cart.getBuyItemMap().isEmpty()) {
-            ModelAndView modelAndView = new ModelAndView();
-            modelAndView.addObject("cart", this.cart);
-            Goods goods = new Goods();
-            goods.setId("777");
-            goods.setName("test");
-            goods.setDescription("test");
-            goods.setPrice(12);
-            cart.addItem(goods);
-            cart.addItem(goods);
-        }
-
-        return cart;
+    public Collection<BuyItem> buyItems() {
+        return cartService.getByuItems();
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public Cart addBuyItem(@RequestBody Goods goods/*, int amount*/) {
-        System.out.println("addItem method run");
-        cart.addItem(goods/*,amount*/);
-        return cart;
+    public void addBuyItem(@RequestBody Goods goods) {
+        cartService.addItem(goods);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public Cart deleteBuyItem(@PathVariable String id) {
-        cart.getBuyItemMap().remove(id);
-        return cart;
+    public void deleteBuyItem(@PathVariable String id) {
+        cartService.removeBuyItem(id);
     }
 }

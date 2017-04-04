@@ -1,8 +1,8 @@
 package ua.airshop.dao.converters.goods;
 
-import ua.airshop.dao.converters.Converter;
+import org.springframework.core.convert.converter.Converter;
 import ua.airshop.dao.models.goods.GoodsModel;
-import ua.airshop.logic.goods.Goods;
+import ua.airshop.service.entity.Goods;
 
 public class GoodsToGoodsModelConverter implements Converter<Goods, GoodsModel> {
     @Override

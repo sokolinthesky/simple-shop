@@ -1,26 +1,10 @@
-package ua.airshop.dao.models.goods;
+package ua.airshop.service.entity;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "goods")
-public class GoodsModel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+public class Goods {
     private String id;
-
-    @Column(name = "name")
     private String name;
-
-    @Column(name = "description")
     private String description;
-
-    @Column(name = "price")
     private int price;
-
-    public GoodsModel() {
-    }
 
     public String getId() {
         return id;
