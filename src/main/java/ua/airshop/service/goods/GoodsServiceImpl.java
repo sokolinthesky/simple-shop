@@ -36,4 +36,5 @@ public class GoodsServiceImpl implements GoodsService {
     public Goods getGoodsById(String id) {
         throw new UnsupportedOperationException();
     }
+
 }

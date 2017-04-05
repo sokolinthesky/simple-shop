@@ -20,7 +20,7 @@ public class CartServiceInMemory implements CartService {
 
     @Override
     public int getTotalPrice() {
-        int totalPrice =0;
+        int totalPrice = 0;
         for(BuyItem buyItem : this.items) {
             totalPrice += buyItem.getPrice();
         }

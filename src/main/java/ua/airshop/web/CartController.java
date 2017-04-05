@@ -33,4 +33,9 @@ public class CartController {
     public void deleteBuyItem(@PathVariable String id) {
         cartService.removeBuyItem(id);
     }
+
+    @RequestMapping(value = "/price", method = RequestMethod.GET)
+    public int totalPrice() {
+        return cartService.getTotalPrice();
+    }
 }

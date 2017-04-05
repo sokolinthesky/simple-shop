@@ -6,16 +6,16 @@
     <session-factory>
 
         <!-- Local properties -->
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/shop</property>
+        <!--<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/shop</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">root</property>
-        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>-->
 
         <!-- Openshift properties -->
-        <!--<property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
+        <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
         <property name="show_sql">false</property>
         <property name="hibernate.enable_lazy_load_no_trans">true</property>
-        <property name="hibernate.connection.datasource">java:comp/env/jdbc/MySQLDS</property>-->
+        <property name="hibernate.connection.datasource">java:comp/env/jdbc/MySQLDS</property>
 
         <!-- List of XML mapping files -->
         <mapping class="ua.airshop.dao.models.goods.GoodsModel"/>

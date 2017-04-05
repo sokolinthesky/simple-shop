@@ -10,11 +10,11 @@ mainApp.service('GoodsService',
         }
         return {
             set: set,
-
             get: get
         }
     }
 );
+
 mainApp.config(['$routeProvider',
     function($routeProvider, $stateProvider, $urlRouterProvider) {
         $routeProvider.
@@ -36,7 +36,7 @@ mainApp.config(['$routeProvider',
             otherwise({
                 redirectTo: '/viewGoods'
             });
-    }]);
+}]);
 
 mainApp.controller('AddGoodsController', function($scope, $http, $location) {
     $scope.createGoods = function() {
@@ -47,8 +47,13 @@ mainApp.controller('AddGoodsController', function($scope, $http, $location) {
         );
     }
 });
+
 mainApp.controller('EditGoodsController', function($scope, $http, $location, GoodsService) {
     $scope.goods = GoodsService.get();
+    $http.get("api/cart/").success(function (response) {
+               $scope.values = response;
+            });
+
     $scope.saveGoods = function(goods) {
         $http.put("api/goods/", goods).success(function (response) {
             $location.path("/viewGoods");
@@ -60,23 +65,50 @@ mainApp.controller('GoodsController', function($scope, $http, $location, GoodsSe
     $http.get("api/goods/").success(function (response) {
         $scope.values = response;
     });
+
     $scope.refresh = function(){
         $http.get("api/goods/").success(function (response) {
             $scope.values = response;
         });
     };
+
     $scope.editGoods = function(goods) {
         GoodsService.set(goods);
         $location.path("/editGoods");
     };
+
     $scope.deleteGoods = function(goods) {
         $http.delete("api/goods/"+ goods.id).success(function (response) {
             $scope.refresh();
         });
     };
+
     $scope.buyGoods = function(goods) {
         $http.post("api/cart/", goods).success(function (response) {
             $location.path("/buyGoods");
         })
     };
+
+    $scope.sortField = undefined;
+    $scope.reverse = false;
+
+    $scope.sort = function(fieldName) {
+        if ($scope.sortField === fieldName) {
+            $scope.reverse = !$scope.reverse;
+        } else {
+            $scope.sortField = fieldName;
+            $scope.reverse = false;
+        }
+    }
+
+    $scope.isSortUp = function(fieldName) {
+        return $scope.sortField === fieldName && !$scope.reverse;
+    }
+
+    $scope.isSortDown = function(fieldName) {
+        return $scope.sortField === fieldName && $scope.reverse;
+    }
 });
+
+
+
